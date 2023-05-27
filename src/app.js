@@ -18,14 +18,14 @@ app.use('/agregar', express.static(path.join(__dirname, '../public/views')));
 
 app.use('/equipo/:id/editar', express.static(path.join(__dirname, '../public/views')));
 
-app.get('/club/equipos', (request, response) => {
+app.get('/club', (request, response) => {
   const equiposData = fs.readFileSync(rutaJson);
   const equipos = JSON.parse(equiposData);
   response.setHeader('Content-Type', 'application/json');
   response.send(equipos);
 });
 
-app.get('/club/equipo/:id/ver', (request, response) => {
+app.get('/club/:id/ver', (request, response) => {
   const equiposData = fs.readFileSync(rutaJson);
   const equipos = JSON.parse(equiposData);
   const equipoEncontrado = equipos.find((equipo) => (equipo.id === Number(request.params.id)));
@@ -37,7 +37,7 @@ app.get('/club/equipo/:id/ver', (request, response) => {
   }
 });
 
-app.post('/club/equipos/agregar', (request, response) => {
+app.post('/club/agregar', (request, response) => {
   const data = fs.readFileSync(rutaJson);
   const dataObjeto = JSON.parse(data);
   const nuevoId = dataObjeto.length + 1;
@@ -55,7 +55,7 @@ app.post('/club/equipos/agregar', (request, response) => {
   });
 });
 
-app.patch('/club/equipos/:id/editar', (request, response) => {
+app.patch('/club/:id/editar', (request, response) => {
   const {
     nombre,
     club,
@@ -84,7 +84,7 @@ app.patch('/club/equipos/:id/editar', (request, response) => {
   });
 });
 
-app.delete('/club/equipos/:id/eliminar', (request, response) => {
+app.delete('/club/:id/eliminar', (request, response) => {
   const data = fs.readFileSync(rutaJson);
   const dataObjeto = JSON.parse(data);
   const equipoIndex = dataObjeto.findIndex((equipo) => (equipo.id === Number(request.params.id)));
