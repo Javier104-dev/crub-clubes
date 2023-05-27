@@ -1,20 +1,32 @@
 const express = require('express');
 const fs = require('fs');
+const path = require('path');
 
 const app = express();
 const PUERTO = 8080;
+const rutaJson = '../data/equipos.json';
 
 app.use(express.json());
 
-app.get('/equipos', (request, response) => {
-  const equiposData = fs.readFileSync('../data/equipos.json');
+app.use(express.static(path.join(__dirname, '../public')));
+
+app.use('/', express.static(path.join(__dirname, '../public/views')));
+
+app.use('/equipo/:id/ver', express.static(path.join(__dirname, '../public/views')));
+
+app.use('/agregar', express.static(path.join(__dirname, '../public/views')));
+
+app.use('/equipo/:id/editar', express.static(path.join(__dirname, '../public/views')));
+
+app.get('/club/equipos', (request, response) => {
+  const equiposData = fs.readFileSync(rutaJson);
   const equipos = JSON.parse(equiposData);
   response.setHeader('Content-Type', 'application/json');
   response.send(equipos);
 });
 
-app.get('/equipos/:id', (request, response) => {
-  const equiposData = fs.readFileSync('../data/equipos.json');
+app.get('/club/equipo/:id/ver', (request, response) => {
+  const equiposData = fs.readFileSync(rutaJson);
   const equipos = JSON.parse(equiposData);
   const equipoEncontrado = equipos.find((equipo) => (equipo.id === Number(request.params.id)));
   if (equipoEncontrado) {
@@ -25,17 +37,17 @@ app.get('/equipos/:id', (request, response) => {
   }
 });
 
-app.post('/equipos', (request, response) => {
-  const data = fs.readFileSync('../data/equipos.json');
-  const dataJson = JSON.parse(data);
-  const nuevoId = dataJson.length + 1;
+app.post('/club/equipos/agregar', (request, response) => {
+  const data = fs.readFileSync(rutaJson);
+  const dataObjeto = JSON.parse(data);
+  const nuevoId = dataObjeto.length + 1;
 
   request.body.id = nuevoId;
-  dataJson.push(request.body);
+  dataObjeto.push(request.body);
 
-  const nuevoEquipo = JSON.stringify(dataJson, null, 2);
+  const nuevoEquipo = JSON.stringify(dataObjeto, null, 2);
 
-  fs.writeFile('../data/equipos.json', nuevoEquipo, (error) => {
+  fs.writeFile(rutaJson, nuevoEquipo, (error) => {
     if (error) {
       response.status(404).json({ msg: 'Todo not found' });
     }
@@ -43,7 +55,7 @@ app.post('/equipos', (request, response) => {
   });
 });
 
-app.patch('/equipos/:id', (request, response) => {
+app.patch('/club/equipos/:id/editar', (request, response) => {
   const {
     nombre,
     club,
@@ -52,9 +64,9 @@ app.patch('/equipos/:id', (request, response) => {
     miembros,
   } = request.body;
 
-  const data = fs.readFileSync('../data/equipos.json');
-  const dataJson = JSON.parse(data);
-  const equipoEncontrado = dataJson.find((equipo) => (equipo.id === Number(request.params.id)));
+  const data = fs.readFileSync(rutaJson);
+  const dataObjeto = JSON.parse(data);
+  const equipoEncontrado = dataObjeto.find((equipo) => (equipo.id === Number(request.params.id)));
   if (equipoEncontrado) {
     equipoEncontrado.nombre = nombre ?? equipoEncontrado.nombre;
     equipoEncontrado.club = club ?? equipoEncontrado.club;
@@ -63,8 +75,8 @@ app.patch('/equipos/:id', (request, response) => {
     equipoEncontrado.miembros = miembros ?? equipoEncontrado.miembros;
   }
 
-  const equiposActualizados = JSON.stringify(dataJson, null, 2);
-  fs.writeFile('../data/equipos.json', equiposActualizados, (error) => {
+  const equiposActualizados = JSON.stringify(dataObjeto, null, 2);
+  fs.writeFile(rutaJson, equiposActualizados, (error) => {
     if (error) {
       response.status(400).json({ msg: 'Error al actualizar el equipo' });
     }
@@ -72,14 +84,14 @@ app.patch('/equipos/:id', (request, response) => {
   });
 });
 
-app.delete('/equipos/:id', (request, response) => {
-  const data = fs.readFileSync('../data/equipos.json');
-  const dataJson = JSON.parse(data);
-  const equipoIndex = dataJson.findIndex((equipo) => (equipo.id === Number(request.params.id)));
+app.delete('/club/equipos/:id/eliminar', (request, response) => {
+  const data = fs.readFileSync(rutaJson);
+  const dataObjeto = JSON.parse(data);
+  const equipoIndex = dataObjeto.findIndex((equipo) => (equipo.id === Number(request.params.id)));
   if (equipoIndex) {
-    dataJson.splice(equipoIndex, 1);
-    const equipoEliminado = JSON.stringify(dataJson, null, 2);
-    fs.writeFile('../data/equipos.json', equipoEliminado, (error) => {
+    dataObjeto.splice(equipoIndex, 1);
+    const equipoEliminado = JSON.stringify(dataObjeto, null, 2);
+    fs.writeFile(rutaJson, equipoEliminado, (error) => {
       if (error) {
         response.status(400).json({ msg: 'El equipo no se pudo eliminar' });
       }
