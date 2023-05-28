@@ -3,12 +3,12 @@
   padding-right: calc((100% - 900px)/2);
 }
 
-.tabla {
+.equipos__tabla {
   max-width: 900px;
   width: 100%;
 }
 
-.tabla__encabezado, .tabla__registro {
+.equipos__tabla__encabezado, .equipos__tabla__registro {
   text-align: left;
   padding: 1rem;
   padding-left: 0.4rem;
@@ -16,16 +16,16 @@
   border-collapse: collapse;
 }
 
-.tabla__registros:nth-child(even) {
+.equipos__tabla__registros:nth-child(even) {
   background-color: #dddddd;
 }
 
-.tabla__encabezados {
+.equipos__tabla__encabezados {
   font-size: 1.5rem;
   font-weight: bold;
 }
 
-.tabla__registros {
+.equipos__tabla__registros {
   font-size: 1.1rem;
 }
 
