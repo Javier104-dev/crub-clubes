@@ -56,7 +56,7 @@ app.post('/club/agregar', (request, response) => {
     if (error) {
       response.status(404).json({ msg: 'Todo not found' });
     }
-    return response.status(200).json({ msg: 'Nueva pelicula agregada' });
+    return response.status(200).json({ msg: 'Nuevo equipo agregado' });
   });
 });
 
