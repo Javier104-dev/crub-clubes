@@ -1,11 +1,12 @@
 const express = require('express');
 const fs = require('fs');
+const path = require('path');
 // const cors = require('cors');
 
 const app = express();
 const PUERTO = 8080;
 const HOST = '127.0.0.1';
-const rutaJson = '../data/equipos.json';
+const rutaJson = path.join(__dirname, '../data/equipos.json');
 
 // app.use(cors({
 //   origin: 'http://127.0.0.1:5500',
