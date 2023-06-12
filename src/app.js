@@ -43,6 +43,19 @@ app.get('/club/:id/ver', (request, response) => {
 });
 
 app.post('/club/agregar', (request, response) => {
+  const {
+    nombre,
+    club,
+    ano,
+    ciudad,
+    miembros,
+  } = request.body;
+
+  if (!nombre || !club || !ano || !ciudad || !miembros) {
+    response.status(400).json({ msg: 'Datos incorrectos' });
+    return;
+  }
+
   try {
     const data = fs.readFileSync(rutaJson);
     const dataObjeto = JSON.parse(data);
@@ -85,6 +98,9 @@ app.patch('/club/:id/editar', (request, response) => {
       equipoEncontrado.ano = ano ?? equipoEncontrado.ano;
       equipoEncontrado.ciudad = ciudad ?? equipoEncontrado.ciudad;
       equipoEncontrado.miembros = miembros ?? equipoEncontrado.miembros;
+    } else {
+      response.status(404).json({ msg: 'Equipo no encontrado' });
+      return;
     }
     const equiposActualizados = JSON.stringify(dataObjeto, null, 2);
     fs.writeFile(rutaJson, equiposActualizados, (error) => {
