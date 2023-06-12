@@ -34,6 +34,7 @@ app.get('/club/:id/ver', (request, response) => {
 
     if (equipoEncontrado) {
       response.json(equipoEncontrado);
+      return;
     }
     response.status(404).json({ msg: 'Equipo no encontrado' });
   } catch (error) {
@@ -55,6 +56,7 @@ app.post('/club/agregar', (request, response) => {
     fs.writeFile(rutaJson, nuevoEquipo, (error) => {
       if (error) {
         response.status(500).json({ msg: 'No se pudo agregar el nuevo equipo' });
+        return;
       }
       response.status(200).json({ msg: 'Nuevo equipo agregado' });
     });
@@ -88,6 +90,7 @@ app.patch('/club/:id/editar', (request, response) => {
     fs.writeFile(rutaJson, equiposActualizados, (error) => {
       if (error) {
         response.status(400).json({ msg: 'Error al actualizar el equipo' });
+        return;
       }
       response.status(200).json({ msg: 'Equipo actualizado', equipo: equipoEncontrado });
     });
@@ -108,6 +111,7 @@ app.delete('/club/:id/eliminar', (request, response) => {
       fs.writeFile(rutaJson, equipoEliminado, (error) => {
         if (error) {
           response.status(500).json({ msg: 'No se pudo eliminar el equipo', error: error.message });
+          return;
         }
         response.status(200).json({ msg: 'Equipo eliminado', equipoEliminado: equipoIndex });
       });
