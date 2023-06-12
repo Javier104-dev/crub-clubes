@@ -8,6 +8,8 @@ const PUERTO = 8080;
 const HOST = '127.0.0.1';
 const rutaJson = path.join(__dirname, '../data/equipos.json');
 
+app.use(express.json());
+
 app.use(cors({
   origin: '*',
 }));
@@ -32,9 +34,8 @@ app.get('/club/:id/ver', (request, response) => {
 
     if (equipoEncontrado) {
       response.json(equipoEncontrado);
-    } else {
-      response.status(404).json({ msg: 'Equipo no encontrado' });
     }
+    response.status(404).json({ msg: 'Equipo no encontrado' });
   } catch (error) {
     response.status(500).json({ msg: 'Error interno del servidor', error: error.message });
   }
@@ -55,7 +56,7 @@ app.post('/club/agregar', (request, response) => {
       if (error) {
         response.status(500).json({ msg: 'No se pudo agregar el nuevo equipo' });
       }
-      return response.status(200).json({ msg: 'Nuevo equipo agregado' });
+      response.status(200).json({ msg: 'Nuevo equipo agregado' });
     });
   } catch (error) {
     response.status(500).json({ msg: 'Error interno del servidor', error: error.message });
@@ -88,7 +89,7 @@ app.patch('/club/:id/editar', (request, response) => {
       if (error) {
         response.status(400).json({ msg: 'Error al actualizar el equipo' });
       }
-      return response.status(200).json({ msg: 'Equipo actualizado', equipo: equipoEncontrado });
+      response.status(200).json({ msg: 'Equipo actualizado', equipo: equipoEncontrado });
     });
   } catch (error) {
     response.status(500).json({ msg: 'Error interno del servidor', error: error.message });
@@ -108,7 +109,7 @@ app.delete('/club/:id/eliminar', (request, response) => {
         if (error) {
           response.status(500).json({ msg: 'No se pudo eliminar el equipo', error: error.message });
         }
-        return response.status(200).json({ msg: 'Equipo eliminado', equipoEliminado: equipoIndex });
+        response.status(200).json({ msg: 'Equipo eliminado', equipoEliminado: equipoIndex });
       });
     } else {
       response.status(404).json({ msg: 'Equipo no encontrado' });
