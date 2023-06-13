@@ -44,14 +44,15 @@ app.get('/club/:id/ver', (request, response) => {
 
 app.post('/club/agregar', (request, response) => {
   const {
-    nombre,
-    club,
-    ano,
-    ciudad,
-    miembros,
+    pais,
+    name,
+    address,
+    website,
+    clubColors,
+    phone,
   } = request.body;
 
-  if (!nombre || !club || !ano || !ciudad || !miembros) {
+  if (!name || !address || !website || !clubColors || !phone) {
     response.status(400).json({ msg: 'Datos incorrectos' });
     return;
   }
@@ -61,8 +62,19 @@ app.post('/club/agregar', (request, response) => {
     const dataObjeto = JSON.parse(data);
     const nuevoId = dataObjeto.length + 1;
 
-    request.body.id = nuevoId;
-    dataObjeto.push(request.body);
+    const nuevoClub = {
+      area: {
+        name: pais,
+      },
+      name,
+      address,
+      website,
+      clubColors,
+      phone,
+    };
+
+    nuevoClub.id = nuevoId;
+    dataObjeto.push(nuevoClub);
 
     const nuevoEquipo = JSON.stringify(dataObjeto, null, 2);
 
@@ -80,11 +92,11 @@ app.post('/club/agregar', (request, response) => {
 
 app.patch('/club/:id/editar', (request, response) => {
   const {
-    nombre,
-    club,
-    ano,
-    ciudad,
-    miembros,
+    name,
+    address,
+    website,
+    clubColors,
+    phone,
   } = request.body;
 
   try {
@@ -93,11 +105,11 @@ app.patch('/club/:id/editar', (request, response) => {
     const equipoEncontrado = dataObjeto.find((equipo) => (equipo.id === Number(request.params.id)));
 
     if (equipoEncontrado) {
-      equipoEncontrado.nombre = nombre ?? equipoEncontrado.nombre;
-      equipoEncontrado.club = club ?? equipoEncontrado.club;
-      equipoEncontrado.ano = ano ?? equipoEncontrado.ano;
-      equipoEncontrado.ciudad = ciudad ?? equipoEncontrado.ciudad;
-      equipoEncontrado.miembros = miembros ?? equipoEncontrado.miembros;
+      equipoEncontrado.name = name ?? equipoEncontrado.name;
+      equipoEncontrado.address = address ?? equipoEncontrado.address;
+      equipoEncontrado.website = website ?? equipoEncontrado.website;
+      equipoEncontrado.clubColors = clubColors ?? equipoEncontrado.clubColors;
+      equipoEncontrado.phone = phone ?? equipoEncontrado.phone;
     } else {
       response.status(404).json({ msg: 'Equipo no encontrado' });
       return;

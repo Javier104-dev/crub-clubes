@@ -1,62 +1,5 @@
 [
   {
-    "id": 57,
-    "area": {
-      "id": 2072,
-      "name": "England"
-    },
-    "name": "Arsenal FC",
-    "shortName": "Arsenal",
-    "tla": "ARS",
-    "crestUrl": "https://upload.wikimedia.org/wikipedia/en/5/53/Arsenal_FC.svg",
-    "address": "75 Drayton Park London N5 1BU",
-    "phone": "+44 (020) 76195003",
-    "website": "http://www.arsenal.com",
-    "email": "info@arsenal.co.uk",
-    "founded": 1886,
-    "clubColors": "Red / White",
-    "venue": "Emirates Stadium",
-    "lastUpdated": "2020-05-14T02:41:34Z"
-  },
-  {
-    "id": 58,
-    "area": {
-      "id": 2072,
-      "name": "England"
-    },
-    "name": "Aston Villa FC",
-    "shortName": "Aston Villa",
-    "tla": "AST",
-    "crestUrl": "https://upload.wikimedia.org/wikipedia/de/9/9f/Aston_Villa_logo.svg",
-    "address": "Villa Park Birmingham B6 6HE",
-    "phone": "+44 (0121) 3272299",
-    "website": "http://www.avfc.co.uk",
-    "email": null,
-    "founded": 1872,
-    "clubColors": "Claret / Sky Blue",
-    "venue": "Villa Park",
-    "lastUpdated": "2020-05-14T02:41:36Z"
-  },
-  {
-    "id": 61,
-    "area": {
-      "id": 2072,
-      "name": "England"
-    },
-    "name": "Chelsea FC",
-    "shortName": "Chelsea",
-    "tla": "CHE",
-    "crestUrl": "https://upload.wikimedia.org/wikipedia/en/c/cc/Chelsea_FC.svg",
-    "address": "Fulham Road London SW6 1HS",
-    "phone": "+44 (0871) 9841955",
-    "website": "http://www.chelseafc.com",
-    "email": null,
-    "founded": 1905,
-    "clubColors": "Royal Blue / White",
-    "venue": "Stamford Bridge",
-    "lastUpdated": "2020-05-14T02:41:41Z"
-  },
-  {
     "id": 62,
     "area": {
       "id": 2072,
@@ -209,25 +152,6 @@
     "lastUpdated": "2020-05-14T02:42:06Z"
   },
   {
-    "id": 328,
-    "area": {
-      "id": 2072,
-      "name": "England"
-    },
-    "name": "Burnley FC",
-    "shortName": "Burnley",
-    "tla": "BUR",
-    "crestUrl": "https://upload.wikimedia.org/wikipedia/en/6/62/Burnley_F.C._Logo.svg",
-    "address": "Harry Potts Way Burnley BB10 4BX",
-    "phone": "+44 (0871) 2211882",
-    "website": "http://www.burnleyfootballclub.com",
-    "email": "info@burnleyfc.com",
-    "founded": 1881,
-    "clubColors": "Claret / Sky Blue",
-    "venue": "Turf Moor",
-    "lastUpdated": "2020-05-14T02:42:11Z"
-  },
-  {
     "id": 338,
     "area": {
       "id": 2072,
@@ -378,5 +302,16 @@
     "clubColors": "Red / Black",
     "venue": "Vitality Stadium",
     "lastUpdated": "2020-05-14T02:43:14Z"
+  },
+  {
+    "area": {
+      "name": "asdas"
+    },
+    "name": "dasd",
+    "address": "asda",
+    "website": "dasdas",
+    "clubColors": "fghfgh",
+    "phone": "056756",
+    "id": 17
   }
 ]
