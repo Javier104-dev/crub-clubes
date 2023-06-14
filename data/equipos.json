@@ -1,43 +1,5 @@
 [
   {
-    "id": 62,
-    "area": {
-      "id": 2072,
-      "name": "England"
-    },
-    "name": "Everton FC",
-    "shortName": "Everton",
-    "tla": "EVE",
-    "crestUrl": "https://upload.wikimedia.org/wikipedia/en/7/7c/Everton_FC_logo.svg",
-    "address": "Goodison Park Liverpool L4 4EL",
-    "phone": "+44 (0871) 6631878",
-    "website": "http://www.evertonfc.com",
-    "email": "everton@evertonfc.com",
-    "founded": 1878,
-    "clubColors": "Blue / White",
-    "venue": "Goodison Park",
-    "lastUpdated": "2020-05-14T02:41:42Z"
-  },
-  {
-    "id": 64,
-    "area": {
-      "id": 2072,
-      "name": "England"
-    },
-    "name": "Liverpool FC",
-    "shortName": "Liverpool",
-    "tla": "LIV",
-    "crestUrl": "https://upload.wikimedia.org/wikipedia/en/0/0c/Liverpool_FC.svg",
-    "address": "Anfield Road Liverpool L4 OTH",
-    "phone": "+44 (0844) 4993000",
-    "website": "http://www.liverpoolfc.tv",
-    "email": "customercontact@liverpoolfc.tv",
-    "founded": 1892,
-    "clubColors": "Red / White",
-    "venue": "Anfield",
-    "lastUpdated": "2020-05-14T02:41:46Z"
-  },
-  {
     "id": 65,
     "area": {
       "id": 2072,
@@ -285,33 +247,102 @@
     "lastUpdated": "2020-05-14T02:43:12Z"
   },
   {
-    "id": 1044,
     "area": {
-      "id": 2072,
-      "name": "England"
+      "name": "aaaaaaaa"
     },
-    "name": "AFC Bournemouth",
-    "shortName": "Bournemouth",
-    "tla": "BOU",
-    "crestUrl": "https://upload.wikimedia.org/wikipedia/en/e/e5/AFC_Bournemouth_%282013%29.svg",
-    "address": "Dean Court, Kings Park Bournemouth BH7 7AF",
-    "phone": "+44 (01202) 726300",
-    "website": "http://www.afcb.co.uk",
-    "email": "admin@afcb.co.uk",
-    "founded": 1890,
-    "clubColors": "Red / Black",
-    "venue": "Vitality Stadium",
-    "lastUpdated": "2020-05-14T02:43:14Z"
+    "name": "aaaaaaaaaa",
+    "address": "aaaaaaaaa",
+    "website": "aaaaaaaaaaaaa",
+    "clubColors": "aaaaaaaaaaaa",
+    "phone": "aaaaaaaaa",
+    "id": 14
   },
   {
     "area": {
-      "name": "asdas"
+      "name": "fffffffff"
     },
-    "name": "dasd",
-    "address": "asda",
-    "website": "dasdas",
-    "clubColors": "fghfgh",
-    "phone": "056756",
+    "name": "ffffffffff",
+    "address": "ffffffffff",
+    "website": "fffffffffffffff",
+    "clubColors": "fffffffffffff",
+    "phone": "fffffffffff",
+    "id": 15
+  },
+  {
+    "area": {
+      "name": "gggggggggg"
+    },
+    "name": "ggggggggggggg",
+    "address": "ggggggggggg",
+    "website": "ggggggggggggg",
+    "clubColors": "ggggggggggggggggg",
+    "phone": "ggggggggggg",
+    "id": 16
+  },
+  {
+    "area": {
+      "name": "hhhhhhhh"
+    },
+    "name": "hhhhhhhhh",
+    "address": "hhhhhhhhhhh",
+    "website": "hhhhhhhhhhhh",
+    "clubColors": "hhhhhhhhhhhhhhhh",
+    "phone": "hhhhhhhhhh",
     "id": 17
+  },
+  {
+    "area": {
+      "name": "rrrrrrrrrrr"
+    },
+    "name": "rrrrrrrrr",
+    "address": "rrrrrrrrrr",
+    "website": "rrrrrrrrrrr",
+    "clubColors": "rrrrrrrrrrr",
+    "phone": "rrrrrrrrrrrrr",
+    "id": 18
+  },
+  {
+    "area": {
+      "name": "eeeeeeeeeeee"
+    },
+    "name": "eeeeeeee",
+    "address": "eeeeeeeee",
+    "website": "eeeeeeeeeeee",
+    "clubColors": "eeeeeeeeeeeeee",
+    "phone": "eeeeeeeeee",
+    "id": 19
+  },
+  {
+    "area": {
+      "name": "bbbbbbbbbb"
+    },
+    "name": "bbbbbbbbbb",
+    "address": "bbbbbbbbb",
+    "website": "bbbbbbbbbbb",
+    "clubColors": "bbbbbbbbbbbb",
+    "phone": "bbbbbbbbbbbbbb",
+    "id": 20
+  },
+  {
+    "area": {
+      "name": "mmmmmmmmmmmm"
+    },
+    "name": "mmmmmmmmmm",
+    "address": "mmmmmm",
+    "website": "mmmmmmmmmmmmmm",
+    "clubColors": "mmmmmmm",
+    "phone": "mmmmmmmmm",
+    "id": 21
+  },
+  {
+    "area": {
+      "name": "qqqqqq"
+    },
+    "name": "qqqqqqqqqqqqqq",
+    "address": "qqqqqqqqqqq",
+    "website": "qqqqqqqqqqqq",
+    "clubColors": "qqqqqqqq",
+    "phone": "qqqqqqqqqq",
+    "id": 22
   }
 ]

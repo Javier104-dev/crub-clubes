@@ -52,7 +52,7 @@ app.post('/club/agregar', (request, response) => {
     phone,
   } = request.body;
 
-  if (!name || !address || !website || !clubColors || !phone) {
+  if (!pais || !name || !address || !website || !clubColors || !phone) {
     response.status(400).json({ msg: 'Datos incorrectos' });
     return;
   }
@@ -92,6 +92,7 @@ app.post('/club/agregar', (request, response) => {
 
 app.patch('/club/:id/editar', (request, response) => {
   const {
+    pais,
     name,
     address,
     website,
@@ -105,11 +106,12 @@ app.patch('/club/:id/editar', (request, response) => {
     const equipoEncontrado = dataObjeto.find((equipo) => (equipo.id === Number(request.params.id)));
 
     if (equipoEncontrado) {
-      equipoEncontrado.name = name ?? equipoEncontrado.name;
-      equipoEncontrado.address = address ?? equipoEncontrado.address;
-      equipoEncontrado.website = website ?? equipoEncontrado.website;
-      equipoEncontrado.clubColors = clubColors ?? equipoEncontrado.clubColors;
-      equipoEncontrado.phone = phone ?? equipoEncontrado.phone;
+      equipoEncontrado.area.name = pais;
+      equipoEncontrado.name = name;
+      equipoEncontrado.address = address;
+      equipoEncontrado.website = website;
+      equipoEncontrado.clubColors = clubColors;
+      equipoEncontrado.phone = phone;
     } else {
       response.status(404).json({ msg: 'Equipo no encontrado' });
       return;
