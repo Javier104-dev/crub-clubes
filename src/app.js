@@ -1,7 +1,7 @@
 const express = require('express');
-const fs = require('fs');
 const path = require('path');
 const cors = require('cors');
+const u = require('./utilidadesFs.js');
 
 const app = express();
 const PUERTO = 8080;
@@ -14,26 +14,21 @@ app.use(cors({
   origin: '*',
 }));
 
-app.get('/clubes', (request, response) => {
+app.get('/clubes', async (request, response) => {
   try {
-    const equiposData = fs.readFileSync(rutaJson);
-    const equipos = JSON.parse(equiposData);
-
-    response.setHeader('Content-Type', 'application/json');
-    response.send(equipos);
+    response.json(await u.leerJson(rutaJson));
   } catch (error) {
     response.status(500).json({ msg: 'Error interno del servidor', error: error.message });
   }
 });
 
-app.get('/club/:id/ver', (request, response) => {
+app.get('/club/:id/ver', async (request, response) => {
   try {
-    const equiposData = fs.readFileSync(rutaJson);
-    const equipos = JSON.parse(equiposData);
-    const equipoEncontrado = equipos.find((equipo) => (equipo.id === Number(request.params.id)));
+    const clubesData = await u.leerJson(rutaJson);
+    const clubEncontrado = clubesData.find((equipo) => (equipo.id === Number(request.params.id)));
 
-    if (equipoEncontrado) {
-      response.json(equipoEncontrado);
+    if (clubEncontrado) {
+      response.json(clubEncontrado);
       return;
     }
     response.status(404).json({ msg: 'Equipo no encontrado' });
@@ -42,7 +37,7 @@ app.get('/club/:id/ver', (request, response) => {
   }
 });
 
-app.post('/club/agregar', (request, response) => {
+app.post('/club/agregar', async (request, response) => {
   const {
     pais,
     name,
@@ -58,9 +53,8 @@ app.post('/club/agregar', (request, response) => {
   }
 
   try {
-    const data = fs.readFileSync(rutaJson);
-    const dataObjeto = JSON.parse(data);
-    const nuevoId = dataObjeto.length + 1;
+    const clubesData = await u.leerJson(rutaJson);
+    const nuevoId = clubesData.length + 1;
 
     const nuevoClub = {
       area: {
@@ -74,23 +68,17 @@ app.post('/club/agregar', (request, response) => {
     };
 
     nuevoClub.id = nuevoId;
-    dataObjeto.push(nuevoClub);
+    clubesData.push(nuevoClub);
 
-    const nuevoEquipo = JSON.stringify(dataObjeto, null, 2);
-
-    fs.writeFile(rutaJson, nuevoEquipo, (error) => {
-      if (error) {
-        response.status(500).json({ msg: 'No se pudo agregar el nuevo equipo' });
-        return;
-      }
-      response.status(200).json({ msg: 'Nuevo equipo agregado' });
-    });
+    const nuevoEquipo = JSON.stringify(clubesData, null, 2);
+    await u.escribirJson(rutaJson, nuevoEquipo);
+    response.status(200).json({ msg: 'Nuevo equipo agregado' });
   } catch (error) {
     response.status(500).json({ msg: 'Error interno del servidor', error: error.message });
   }
 });
 
-app.patch('/club/:id/editar', (request, response) => {
+app.patch('/club/:id/editar', async (request, response) => {
   const {
     pais,
     name,
@@ -101,9 +89,8 @@ app.patch('/club/:id/editar', (request, response) => {
   } = request.body;
 
   try {
-    const data = fs.readFileSync(rutaJson);
-    const dataObjeto = JSON.parse(data);
-    const equipoEncontrado = dataObjeto.find((equipo) => (equipo.id === Number(request.params.id)));
+    const clubesData = await u.leerJson(rutaJson);
+    const equipoEncontrado = clubesData.find((equipo) => (equipo.id === Number(request.params.id)));
 
     if (equipoEncontrado) {
       equipoEncontrado.area.name = pais;
@@ -116,41 +103,35 @@ app.patch('/club/:id/editar', (request, response) => {
       response.status(404).json({ msg: 'Equipo no encontrado' });
       return;
     }
-    const equiposActualizados = JSON.stringify(dataObjeto, null, 2);
-    fs.writeFile(rutaJson, equiposActualizados, (error) => {
-      if (error) {
-        response.status(400).json({ msg: 'Error al actualizar el equipo' });
-        return;
-      }
-      response.status(200).json({ msg: 'Equipo actualizado', equipo: equipoEncontrado });
-    });
+    const equiposActualizados = JSON.stringify(clubesData, null, 2);
+    await u.escribirJson(rutaJson, equiposActualizados);
+    response.status(200).json({ msg: 'Equipo actualizado', equipo: equipoEncontrado });
   } catch (error) {
     response.status(500).json({ msg: 'Error interno del servidor', error: error.message });
   }
 });
 
-app.delete('/club/:id/eliminar', (request, response) => {
+app.delete('/club/:id/eliminar', async (request, response) => {
   try {
-    const data = fs.readFileSync(rutaJson);
-    const dataObjeto = JSON.parse(data);
-    const equipoIndex = dataObjeto.findIndex((equipo) => (equipo.id === Number(request.params.id)));
+    const clubesData = await u.leerJson(rutaJson);
+    const equipoIndex = clubesData.findIndex((equipo) => (equipo.id === Number(request.params.id)));
 
     if (equipoIndex >= 0) {
-      dataObjeto.splice(equipoIndex, 1);
-      const equipoEliminado = JSON.stringify(dataObjeto, null, 2);
-      fs.writeFile(rutaJson, equipoEliminado, (error) => {
-        if (error) {
-          response.status(500).json({ msg: 'No se pudo eliminar el equipo', error: error.message });
-          return;
-        }
-        response.status(200).json({ msg: 'Equipo eliminado', equipoEliminado: equipoIndex });
-      });
+      clubesData.splice(equipoIndex, 1);
+      const equipoEliminado = JSON.stringify(clubesData, null, 2);
+      await u.escribirJson(rutaJson, equipoEliminado);
+
+      response.status(200).json({ msg: 'Equipo eliminado' });
     } else {
       response.status(404).json({ msg: 'Equipo no encontrado' });
     }
   } catch (error) {
     response.status(500).json({ msg: 'Error interno del servidor', error: error.message });
   }
+});
+
+app.use('*', (request, response) => {
+  response.status(404).json({ 404: 'Pagina no encontrada' });
 });
 
 app.listen(PUERTO, HOST, () => {
