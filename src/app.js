@@ -1,12 +1,25 @@
 const express = require('express');
 const path = require('path');
 const cors = require('cors');
+const multer = require('multer');
 const u = require('./utilidadesFs.js');
 
 const app = express();
 const PUERTO = 8080;
 const HOST = '127.0.0.1';
+
 const rutaJson = path.join(__dirname, '../data/equipos.json');
+
+const storage = multer.diskStorage({
+  destination(req, file, cb) {
+    cb(null, './imagenes');
+  },
+  filename(req, file, cb) {
+    cb(null, `${Date.now()}-${file.originalname}`);
+  },
+});
+
+const upload = multer({ storage });
 
 app.use(express.json());
 
@@ -37,7 +50,7 @@ app.get('/club/:id/ver', async (request, response) => {
   }
 });
 
-app.post('/club/agregar', async (request, response) => {
+app.post('/club/agregar', upload.single('imagen'), async (request, response) => {
   const {
     pais,
     name,
@@ -65,13 +78,14 @@ app.post('/club/agregar', async (request, response) => {
       website,
       clubColors,
       phone,
+      imagen: request.file.filename,
     };
 
     nuevoClub.id = nuevoId;
     clubesData.push(nuevoClub);
 
-    const nuevoEquipo = JSON.stringify(clubesData, null, 2);
-    await u.escribirJson(rutaJson, nuevoEquipo);
+    const clubesModificados = JSON.stringify(clubesData, null, 2);
+    await u.escribirJson(rutaJson, clubesModificados);
     response.status(200).json({ msg: 'Nuevo equipo agregado' });
   } catch (error) {
     response.status(500).json({ msg: 'Error interno del servidor', error: error.message });
