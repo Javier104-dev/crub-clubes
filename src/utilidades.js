@@ -1,4 +1,5 @@
 const fs = require('fs');
+const path = require('path');
 
 const leerJson = (rutaJson) => new Promise((resolve, reject) => {
   fs.readFile(rutaJson, 'utf-8', (error, resultado) => {
@@ -18,7 +19,26 @@ const escribirJson = (rutaJson, clubesModificados) => new Promise((resolve, reje
   });
 });
 
+const borrarImagen = (club, index) => {
+  if (fs.existsSync(path.join(__dirname, `../imagenes/${club[index].escudo}`))) {
+    fs.unlinkSync(path.join(__dirname, `../imagenes/${club[index].escudo}`));
+  }
+};
+
+const reemplazarImagen = (request, club) => {
+  if (request.file) {
+    if (fs.existsSync(path.join(__dirname, `../imagenes/${club.escudo}`))) {
+      fs.unlinkSync(path.join(__dirname, `../imagenes/${club.escudo}`));
+    }
+    return request.file.filename;
+  }
+
+  return club.escudo;
+};
+
 module.exports = {
   leerJson,
   escribirJson,
+  borrarImagen,
+  reemplazarImagen,
 };

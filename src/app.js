@@ -2,7 +2,7 @@ const express = require('express');
 const path = require('path');
 const cors = require('cors');
 const multer = require('multer');
-const u = require('./utilidadesFs.js');
+const u = require('./utilidades.js');
 
 const app = express();
 const PUERTO = 8080;
@@ -116,7 +116,7 @@ app.patch('/club/:id/editar', upload.single('escudo'), async (request, response)
       equipoEncontrado.website = website;
       equipoEncontrado.clubColors = clubColors;
       equipoEncontrado.phone = phone;
-      equipoEncontrado.escudo = request.file?.filename || equipoEncontrado.escudo;
+      equipoEncontrado.escudo = u.reemplazarImagen(request, equipoEncontrado);
     } else {
       response.status(404).json({ msg: 'Equipo no encontrado' });
       return;
@@ -135,6 +135,7 @@ app.delete('/club/:id/eliminar', async (request, response) => {
     const equipoIndex = clubesData.findIndex((equipo) => (equipo.id === Number(request.params.id)));
 
     if (equipoIndex >= 0) {
+      u.borrarImagen(clubesData, equipoIndex);
       clubesData.splice(equipoIndex, 1);
       const equipoEliminado = JSON.stringify(clubesData, null, 2);
       await u.escribirJson(rutaJson, equipoEliminado);
