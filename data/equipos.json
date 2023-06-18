@@ -250,12 +250,36 @@
     "area": {
       "name": "ssssss"
     },
-    "name": "sssssssss",
-    "address": "ssssssssss",
-    "website": "ssssss",
-    "clubColors": "ssssssssssss",
-    "phone": "ssssssssss",
-    "imagen": "1686891875496-frozen-bubble-1943224_1280.jpeg",
-    "id": 14
+    "name": "sssssssssss",
+    "address": "ssssssssssss",
+    "website": "sssssssss",
+    "clubColors": "ssssssssssssss",
+    "phone": "sssssssssss",
+    "escudo": "1687057268892-frozen-bubble-1943224_1280.jpeg",
+    "id": 1687054395981
+  },
+  {
+    "area": {
+      "name": "ffff"
+    },
+    "name": "fffffffffffffff",
+    "address": "fffffffffffffff",
+    "website": "ffffffff",
+    "clubColors": "fffffffffffffff",
+    "phone": "fffffffffffff",
+    "escudo": "1687057392106-c8a565b29d84921f402f1996f9d817dd-full.jpg",
+    "id": 1687054634744
+  },
+  {
+    "area": {
+      "name": "fffff"
+    },
+    "name": "fffffffff",
+    "address": "fffffffffffff",
+    "website": "ffffffffffffffffffff",
+    "clubColors": "ffffffffff",
+    "phone": "ffffffffffff",
+    "escudo": "1687058523471-frozen-bubble-1943224_1280.jpeg",
+    "id": 1687058494289
   }
 ]

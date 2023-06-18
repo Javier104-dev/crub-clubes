@@ -27,6 +27,8 @@ app.use(cors({
   origin: '*',
 }));
 
+app.use(express.static(path.join(__dirname, '../imagenes')));
+
 app.get('/clubes', async (request, response) => {
   try {
     response.json(await u.leerJson(rutaJson));
@@ -39,6 +41,7 @@ app.get('/club/:id/ver', async (request, response) => {
   try {
     const clubesData = await u.leerJson(rutaJson);
     const clubEncontrado = clubesData.find((equipo) => (equipo.id === Number(request.params.id)));
+    clubEncontrado.escudo = `http://${HOST}:${PUERTO}/${clubEncontrado.escudo}`;
 
     if (clubEncontrado) {
       response.json(clubEncontrado);
@@ -50,7 +53,7 @@ app.get('/club/:id/ver', async (request, response) => {
   }
 });
 
-app.post('/club/agregar', upload.single('imagen'), async (request, response) => {
+app.post('/club/agregar', upload.single('escudo'), async (request, response) => {
   const {
     pais,
     name,
@@ -67,7 +70,7 @@ app.post('/club/agregar', upload.single('imagen'), async (request, response) => 
 
   try {
     const clubesData = await u.leerJson(rutaJson);
-    const nuevoId = clubesData.length + 1;
+    const nuevoId = Date.now();
 
     const nuevoClub = {
       area: {
@@ -78,7 +81,7 @@ app.post('/club/agregar', upload.single('imagen'), async (request, response) => 
       website,
       clubColors,
       phone,
-      imagen: request.file.filename,
+      escudo: request.file?.filename || name,
     };
 
     nuevoClub.id = nuevoId;
@@ -92,7 +95,7 @@ app.post('/club/agregar', upload.single('imagen'), async (request, response) => 
   }
 });
 
-app.patch('/club/:id/editar', async (request, response) => {
+app.patch('/club/:id/editar', upload.single('escudo'), async (request, response) => {
   const {
     pais,
     name,
@@ -113,6 +116,7 @@ app.patch('/club/:id/editar', async (request, response) => {
       equipoEncontrado.website = website;
       equipoEncontrado.clubColors = clubColors;
       equipoEncontrado.phone = phone;
+      equipoEncontrado.escudo = request.file?.filename || equipoEncontrado.escudo;
     } else {
       response.status(404).json({ msg: 'Equipo no encontrado' });
       return;
