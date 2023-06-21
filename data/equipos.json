@@ -16,7 +16,8 @@
     "founded": 1880,
     "clubColors": "Sky Blue / White",
     "venue": "Etihad Stadium",
-    "lastUpdated": "2020-05-14T02:41:49Z"
+    "lastUpdated": "2020-05-14T02:41:49Z",
+    "escudo": "1687305779154-Arsenal_FC.svg"
   },
   {
     "id": 66,
@@ -248,18 +249,6 @@
   },
   {
     "area": {
-      "name": "sssssss"
-    },
-    "name": "ssssssssssss",
-    "address": "sssssssssss",
-    "website": "sssssssssss",
-    "clubColors": "ssssssssss",
-    "phone": "ssssssss",
-    "escudo": "1687067942861-c8a565b29d84921f402f1996f9d817dd-full.jpg",
-    "id": 1687067915256
-  },
-  {
-    "area": {
       "name": "vvvvvvv"
     },
     "name": "vvvvvvvvvv",
@@ -267,7 +256,7 @@
     "website": "vvvvvvvvvvvv",
     "clubColors": "vvvvvvvvvvvvvv",
     "phone": "vvvvvvvvv",
-    "escudo": "1687069125095-c8a565b29d84921f402f1996f9d817dd-full.jpg",
+    "escudo": "1687312662345-frozen-bubble-1943224_1280.jpeg",
     "id": 1687068044318
   }
 ]
