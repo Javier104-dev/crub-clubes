@@ -1,44 +1,38 @@
 const fs = require('fs');
+const multer = require('multer');
 const path = require('path');
 
-const leerJson = (rutaJson) => new Promise((resolve, reject) => {
-  fs.readFile(rutaJson, 'utf-8', (error, resultado) => {
-    if (error) {
-      reject(new Error({ err: error, msg: 'Error al intentar leer el Json' }));
-    }
-    resolve(JSON.parse(resultado));
-  });
-});
+const crearId = () => Date.now();
 
-const escribirJson = (rutaJson, clubesModificados) => new Promise((resolve, reject) => {
-  fs.writeFile(rutaJson, clubesModificados, (error) => {
-    if (error) {
-      reject(new Error({ err: error, msg: 'Error al intentar escribir el Json' }));
-    }
-    resolve();
-  });
-});
-
-const borrarImagen = (club, index) => {
-  if (fs.existsSync(path.join(__dirname, `../imagenes/${club[index].escudo}`))) {
-    fs.unlinkSync(path.join(__dirname, `../imagenes/${club[index].escudo}`));
+const borrarImagen = (club) => {
+  if (fs.existsSync(path.join(__dirname, `../imagenes/${club.escudo}`))) {
+    fs.unlinkSync(path.join(__dirname, `../imagenes/${club.escudo}`));
   }
 };
 
-const reemplazarImagen = (request, club) => {
-  if (request.file) {
-    if (fs.existsSync(path.join(__dirname, `../imagenes/${club.escudo}`))) {
-      fs.unlinkSync(path.join(__dirname, `../imagenes/${club.escudo}`));
-    }
-    return request.file.filename;
+const reemplazarImagen = (club, filename) => {
+  if (filename) {
+    borrarImagen(club);
+    return filename;
   }
 
   return club.escudo;
 };
 
+const storage = multer.diskStorage({
+  destination(req, file, cb) {
+    cb(null, './imagenes');
+  },
+  filename(req, file, cb) {
+    cb(null, `${Date.now()}-${file.originalname}`);
+  },
+});
+
+const upload = multer({ storage });
+
 module.exports = {
-  leerJson,
-  escribirJson,
   borrarImagen,
   reemplazarImagen,
+  crearId,
+  upload,
 };
