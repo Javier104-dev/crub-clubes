@@ -291,8 +291,32 @@
     "address": "prue",
     "website": "prue",
     "clubColors": "prue",
+    "phone": "45345",
+    "escudo": "1687664932586-frozen-bubble-1943224_1280.jpeg",
+    "id": 1687650305194
+  },
+  {
+    "area": {
+      "name": "prue"
+    },
+    "name": "datos",
+    "address": "prue",
+    "website": "prue",
+    "clubColors": "prue",
+    "phone": 45345,
+    "escudo": "1687665421902-frozen-bubble-1943224_1280.jpeg",
+    "id": 1687665421906
+  },
+  {
+    "area": {
+      "name": "aaaaaa"
+    },
+    "name": "a",
+    "address": "a",
+    "website": "a",
+    "clubColors": "a",
     "phone": 45345,
     "escudo": "datos",
-    "id": 1687650305194
+    "id": 1687667780634
   }
 ]
