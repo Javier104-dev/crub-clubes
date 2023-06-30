@@ -16,22 +16,22 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 const borrarImagen = (club) => {
-  if (fs.existsSync(path.join(__dirname, `../imagenes/${club.escudo}`))) {
+  if (fs.existsSync(path.join(__dirname, `../imagenes/${club?.escudo}`))) {
     fs.unlinkSync(path.join(__dirname, `../imagenes/${club.escudo}`));
   }
 };
 
-const reemplazarImagen = (club, filename) => {
+const reemplazarImagen = (filename, clubExistente) => {
   if (filename) {
-    borrarImagen(club);
+    borrarImagen(clubExistente);
     return filename;
   }
 
-  return club.escudo;
+  return clubExistente.escudo;
 };
 
-const constructorCrear = (club, filename) => {
-  const { pais, name, address, website, clubColors, phone } = club;
+const constructorCrear = (club, filename, clubExistente) => {
+  const { pais, name, address, website, clubColors, phone, id } = club;
 
   return {
     area: { name: pais },
@@ -40,21 +40,9 @@ const constructorCrear = (club, filename) => {
     website,
     clubColors,
     phone,
-    escudo: filename || name,
-    id: crearId(),
+    escudo: reemplazarImagen(filename, clubExistente),
+    id
   };
-};
-
-const constructorEditar = (clubF, clubReq, filename) => {
-  const { pais, name, address, website, clubColors, phone } = clubReq;
-
-  clubF.area.name = pais;
-  clubF.name = name;
-  clubF.address = address;
-  clubF.website = website;
-  clubF.clubColors = clubColors;
-  clubF.phone = phone;
-  clubF.escudo = reemplazarImagen(clubF, filename);
 };
 
 module.exports = {
@@ -62,6 +50,5 @@ module.exports = {
   reemplazarImagen,
   crearId,
   upload,
-  constructorCrear,
-  constructorEditar
+  constructorCrear
 };

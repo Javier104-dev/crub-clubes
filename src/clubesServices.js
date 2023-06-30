@@ -1,5 +1,5 @@
 const { leerJson, escribirJson } = require("./jsonFileHandler.js");
-const { borrarImagen, constructorCrear, constructorEditar } = require("./utilidades.js");
+const { borrarImagen, constructorCrear, crearId } = require("./utilidades.js");
 
 const verClubes = async (ruta) => {
   const clubes = await leerJson(ruta);
@@ -25,7 +25,7 @@ const crearClub = async (ruta, filename, club) => {
   if (!pais || !name || !address || !website || !clubColors || !phone) throw new Error("Datos incompletos");
 
   const clubes = await leerJson(ruta);
-  const nuevoClub = constructorCrear(club, filename);
+  const nuevoClub = { ...constructorCrear(club, filename, undefined), id: crearId() };
   clubes.push(nuevoClub);
   await escribirJson(ruta, clubes);
 
@@ -38,13 +38,14 @@ const editarClub = async (ruta, filename, club) => {
   if (!pais || !name || !address || !website || !clubColors || !phone || !id) throw new Error("Datos incompletos");
 
   const clubes = await leerJson(ruta);
-  const clubF = clubes.find((elemento) => elemento.id === id);
+  const indice = clubes.findIndex((elemento) => elemento.id === id);
 
-  if (!clubF) throw new Error("El club no se encuentra en nuestra base de datos");
-  constructorEditar(clubF, club, filename);
+  if (!indice) throw new Error("El club no se encuentra en nuestra base de datos");
+
+  clubes[indice] = constructorCrear(club, filename, clubes[indice]);
   await escribirJson(ruta, clubes);
 
-  return clubF;
+  return clubes[indice];
 };
 
 const eliminarClub = async (ruta, id) => {
