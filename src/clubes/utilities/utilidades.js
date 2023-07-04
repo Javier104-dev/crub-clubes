@@ -1,19 +1,7 @@
 const fs = require('fs');
-const multer = require('multer');
 const path = require('path');
 
 const crearId = () => Date.now();
-
-const storage = multer.diskStorage({
-  destination(req, file, cb) {
-    cb(null, './imagenes');
-  },
-  filename(req, file, cb) {
-    cb(null, `${Date.now()}-${file.originalname}`);
-  },
-});
-
-const upload = multer({ storage });
 
 const borrarImagen = (club) => {
   if (fs.existsSync(path.join(__dirname, `../imagenes/${club?.escudo}`))) {
@@ -27,7 +15,7 @@ const reemplazarImagen = (filename, clubExistente) => {
     return filename;
   }
 
-  return clubExistente.escudo;
+  return clubExistente?.escudo;
 };
 
 const constructorCrear = (club, filename, clubExistente) => {
@@ -49,6 +37,5 @@ module.exports = {
   borrarImagen,
   reemplazarImagen,
   crearId,
-  upload,
   constructorCrear
 };

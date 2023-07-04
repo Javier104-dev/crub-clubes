@@ -246,5 +246,16 @@
     "clubColors": "Claret / Sky Blue",
     "venue": "London Stadium",
     "lastUpdated": "2020-05-14T02:43:12Z"
+  },
+  {
+    "area": {
+      "name": "a"
+    },
+    "name": "a",
+    "address": "a",
+    "website": "a",
+    "clubColors": "a",
+    "phone": "aaaaaaaaaaaaaaaaaaa",
+    "id": 1688511323854
   }
 ]
