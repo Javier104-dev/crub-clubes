@@ -2,9 +2,6 @@ require('dotenv').config();
 const multer = require('multer');
 const path = require("path");
 
-const HOST = process.env.SERVER_HOST;
-const PORT = process.env.SERVER_PORT;
-
 const ruta = path.join(__dirname, "../../uploads");
 
 const configMulter = () => {
@@ -21,7 +18,7 @@ const configMulter = () => {
 };
 
 module.exports = {
-  HOST,
-  PORT,
+  HOST: process.env.SERVER_HOST,
+  PORT: process.env.SERVER_PORT,
   configMulter
 };
