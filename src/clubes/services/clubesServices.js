@@ -1,5 +1,6 @@
+const { HOST, PORT } = require("../../config/config.js");
 const { leerJson, escribirJson } = require("../model/clubesModel.js");
-const { borrarImagen, constructorCrear, crearId } = require("../utilities/utilidades.js");
+const { borrarImagen, mapperClubes, crearId } = require("../utilities/utilidades.js");
 
 const verClubes = async () => {
   const clubes = await leerJson();
@@ -7,14 +8,14 @@ const verClubes = async () => {
 };
 
 const verClub = async (id) => {
-  if (!id) throw new Error("Id invalido");
+  if (!id) throw new Error("Id no definido");
 
   const clubes = await leerJson();
   const club = clubes.find((elemento) => elemento.id === id);
 
-  if (!club) throw new Error("Club inexistente");
+  if (!club) throw new Error("El id no corresponde a un club registrado");
 
-  club.escudo = `http://${process.env.SERVER_HOST}:${process.env.SERVER_PORT}/${club.escudo}`;
+  club.escudo = `http://${HOST}:${PORT}/${club.escudo}`;
 
   return club;
 };
@@ -25,8 +26,9 @@ const crearClub = async (filename, club) => {
   if (!pais || !name || !address || !website || !clubColors || !phone) throw new Error("Datos incompletos");
 
   const clubes = await leerJson();
-  const nuevoClub = { ...constructorCrear(club, filename, undefined), id: crearId() };
+  const nuevoClub = { ...mapperClubes(club, filename, undefined), id: crearId() };
   clubes.push(nuevoClub);
+
   await escribirJson(clubes);
 
   return nuevoClub;
@@ -40,9 +42,10 @@ const editarClub = async (filename, club) => {
   const clubes = await leerJson();
   const indice = clubes.findIndex((elemento) => elemento.id === id);
 
-  if (!indice) throw new Error("El club no se encuentra en nuestra base de datos");
+  if (!indice) throw new Error("El id no corresponde a un club registrado");
 
-  clubes[indice] = constructorCrear(club, filename, clubes[indice]);
+  clubes[indice] = { ...mapperClubes(club, filename, clubes[indice]), id };
+
   await escribirJson(clubes);
 
   return clubes[indice];

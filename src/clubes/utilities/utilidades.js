@@ -18,8 +18,8 @@ const reemplazarImagen = (filename, clubExistente) => {
   return clubExistente?.escudo;
 };
 
-const constructorCrear = (club, filename, clubExistente) => {
-  const { pais, name, address, website, clubColors, phone, id } = club;
+const mapperClubes = (club, filename, clubExistente) => {
+  const { pais, name, address, website, clubColors, phone } = club;
 
   return {
     area: { name: pais },
@@ -28,8 +28,7 @@ const constructorCrear = (club, filename, clubExistente) => {
     website,
     clubColors,
     phone,
-    escudo: reemplazarImagen(filename, clubExistente),
-    id
+    escudo: reemplazarImagen(filename, clubExistente)
   };
 };
 
@@ -37,5 +36,5 @@ module.exports = {
   borrarImagen,
   reemplazarImagen,
   crearId,
-  constructorCrear
+  mapperClubes
 };
