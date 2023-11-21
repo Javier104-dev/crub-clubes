@@ -28,12 +28,12 @@ El proyecto sigue los principios de una `API RESTful`, lo que significa que util
 <h1 align='center'>Estructura del proyecto</h1>
 
 ### Explicación de la arquitectura utilizada
-El código del proyecto se diseñó siguiendo una `arquitectura de capas`, donde los roles y responsabilidades dentro de la aplicación (app) están separados. De esta forma el código se mantiene más modular, si se debe hacer algún cambio en la aplicación solamente se deberá ir y modificar la capa que sea necesaria, sin afectar a todo el código del proyecto.
+El código del proyecto se diseñó siguiendo una `arquitectura de capas`, donde los roles y responsabilidades dentro de la aplicación(app) están separados. De esta forma el código se mantiene más modular, si se debe hacer algún cambio en la aplicación solamente se deberá ir y modificar la capa que sea necesaria, sin afectar a todo el código del proyecto.
 
 Explicación de la estructura utilizada.
 
 | Ruta                    | Explicación                                                                                                               |
-| :---------------------- | :------------------------------------------------------------------------------------------------------------------------ |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------- |
 | src                     | Contiene toda nuestra aplicación                                                                                          |
 | src/app.js              | Punto de entrada de nuestra aplicación                                                                                    |
 | src/clubles             | Contiene la estructura de capas del módulo clubes                                                                         |
@@ -46,3 +46,27 @@ Explicación de la estructura utilizada.
 | uploads                 | Aloja los imágenes cargadas al servidor                                                                                   |
 
 <h1 align='center'>Métodos HTTP</h1>
+
+### Métodos utilizados en el proyecto
+
+| Tipo   | URI                              | Descripción                                   |
+| ------ | -------------------------------- | --------------------------------------------- |
+| GET    | http://127.0.0.1:8080/clubes     | Obtiene los registros de los clubes           |
+| GET    | http://127.0.0.1:8080/clubes/:id | Obtiene el registro de un club en específico  |
+| POST   | http://127.0.0.1:8080/clubes     | Crea un registro de un nuevo club             |
+| PUT    | http://127.0.0.1:8080/clubes:id  | Modifica el registro de un club en específico |
+| DELETE | http://127.0.0.1:8080/clubes:id  | Elimina el registro de un club en específico  |
+
+<h2 align='center'>Instrucciones de instalación</h2>
+
+### Requerimientos:
+- IDE - Visual Studio Code v1.84.2
+- Git v2.43.0
+- Node.js v20.9.0
+
+### Preparando el ambiente:
+- Descargar o clonar el repositorio.
+- Instalar las dependencias necesarias con el comando `npm install`.
+- Crear un archivo `.env` y copiar las variables de entorno que contiene el archivo `.env.dist`.
+- Correr el comando `npm start` para iniciar el servidor en modo desarrollo.
+- Usar la URL `http://127.0.0.1:8080/clubes` para interactuar con el servidor.
