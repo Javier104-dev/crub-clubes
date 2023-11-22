@@ -4,8 +4,8 @@ const path = require('path');
 const crearId = () => Date.now();
 
 const borrarImagen = (club) => {
-  if (fs.existsSync(path.join(__dirname, `../imagenes/${club?.escudo}`))) {
-    fs.unlinkSync(path.join(__dirname, `../imagenes/${club.escudo}`));
+  if (fs.existsSync(path.join(__dirname, `../../../uploads/${club?.escudo}`))) {
+    fs.unlinkSync(path.join(__dirname, `../../../uploads/${club.escudo}`));
   }
 };
 

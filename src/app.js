@@ -7,7 +7,8 @@ const { router: rutas } = require("./clubes/routes/clubesRoutes.js");
 const app = express();
 
 app.use(express.json());
-app.use(express.static(path.join(__dirname, '../imagenes')));
+app.use(express.static(path.join(__dirname, '../uploads')));
+app.use(express.urlencoded({ extended: true }));
 
 app.use(cors({
   origin: '*',
