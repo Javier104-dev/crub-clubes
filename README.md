@@ -59,12 +59,12 @@ Explicación de la estructura utilizada.
 
 <h2 align='center'>Instrucciones de instalación</h2>
 
-### Requerimientos:
+### Requerimientos
 - IDE - Visual Studio Code v1.84.2
 - Git v2.43.0
 - Node.js v20.9.0
 
-### Preparando el ambiente:
+### Preparando el ambiente
 - Descargar o clonar el repositorio.
 - Instalar las dependencias necesarias con el comando `npm install`.
 - En la raíz del proyecto crear un archivo `.env` y copiar las variables de entorno que se encuentran en el archivo `.env.dist`
@@ -73,6 +73,6 @@ Explicación de la estructura utilizada.
 
 ---
 
-### Autor:
+### Autor
 | [<img src='https://avatars.githubusercontent.com/u/105408069?v=4' width=115><br><sub>Javier Anibal Villca</sub>](https://github.com/Javier104-dev) |
 | :------------------------------------------------------------------------------------------------------------------------------------------------: |
