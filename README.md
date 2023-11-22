@@ -70,3 +70,9 @@ Explicación de la estructura utilizada.
 - Crear un archivo `.env` y copiar las variables de entorno que contiene el archivo `.env.dist`.
 - Correr el comando `npm start` para iniciar el servidor en modo desarrollo.
 - Usar la URL `http://127.0.0.1:8080/clubes` para interactuar con el servidor.
+
+---
+
+### Autor:
+| [<img src='https://avatars.githubusercontent.com/u/105408069?v=4' width=115><br><sub>Javier Anibal Villca</sub>](https://github.com/Javier104-dev) |
+| :------------------------------------------------------------------------------------------------------------------------------------------------: |
