@@ -48,7 +48,6 @@ Explicación de la estructura utilizada.
 <h1 align='center'>Métodos HTTP</h1>
 
 ### Métodos utilizados en el proyecto
-
 | Tipo   | URI                              | Descripción                                   |
 | ------ | -------------------------------- | --------------------------------------------- |
 | GET    | http://127.0.0.1:8080/clubes     | Obtiene los registros de los clubes           |
@@ -69,7 +68,7 @@ Explicación de la estructura utilizada.
 - Instalar las dependencias necesarias con el comando `npm install`.
 - En la raíz del proyecto crear un archivo `.env` y copiar las variables de entorno que se encuentran en el archivo `.env.dist`
 - Correr el comando `npm start` para iniciar el servidor en modo desarrollo.
-- Usar la URL `http://127.0.0.1:8080/clubes` para interactuar con el servidor.
+- Usar la URL base `http://127.0.0.1:8080/clubes` para interactuar con el servidor.
 
 ---
 
