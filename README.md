@@ -53,8 +53,8 @@ Explicación de la estructura utilizada.
 | GET    | http://127.0.0.1:8080/clubes     | Obtiene los registros de los clubes           |
 | GET    | http://127.0.0.1:8080/clubes/:id | Obtiene el registro de un club en específico  |
 | POST   | http://127.0.0.1:8080/clubes     | Crea un registro de un nuevo club             |
-| PUT    | http://127.0.0.1:8080/clubes:id  | Modifica el registro de un club en específico |
-| DELETE | http://127.0.0.1:8080/clubes:id  | Elimina el registro de un club en específico  |
+| PUT    | http://127.0.0.1:8080/clubes/:id  | Modifica el registro de un club en específico |
+| DELETE | http://127.0.0.1:8080/clubes/:id  | Elimina el registro de un club en específico  |
 
 <h2 align='center'>Instrucciones de instalación</h2>
 
